@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # Serviço da aplicação PHP (Laravel)
+  app:
+    build: .
+    container_name: php-app
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8000:8000"
+    working_dir: /var/www/html
+    networks:
+      - laravel_network
+    depends_on:
+      - db # Garante que o serviço do MySQL seja iniciado antes da aplicação
+
+  # Serviço do banco de dados MySQL
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root # Senha do usuário root do MySQL
+      MYSQL_DATABASE: livros # Nome do banco de dados
+      MYSQL_USER: appuser # Usuário do banco de dados
+      MYSQL_PASSWORD: appuser # Senha do usuário do banco de dados
+    ports:
+      - "3306:3306" # Porta exposta para acesso ao banco de dados
+    volumes:
+      - mysql_data:/var/lib/mysql # Volume persistente para os dados do MySQL
+    networks:
+      - laravel_network
+
+# Redes personalizadas para os serviços se comunicarem
+networks:
+  laravel_network:
+    driver: bridge
+
+# Volumes persistentes para armazenar os dados do MySQL
+volumes:
+  mysql_data:
