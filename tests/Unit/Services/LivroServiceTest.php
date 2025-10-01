@@ -20,7 +20,7 @@ class LivroServiceTest extends TestCase
         $livroMock = Mockery::mock(Livro::class);
 
         $livroMock->shouldReceive('find')
-            ->with($codigoLivro) // Id que queremos simular
+            ->with($codigoLivro)
             ->once()
             ->andReturn((object)[
                 'codl' => $codigoLivro,

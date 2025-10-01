@@ -6,8 +6,14 @@
     <!-- Incluindo CSS do Select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <style>
+        /* Usa exatamente os mesmos estilos do Bootstrap .form-control.is-invalid */
         .is-invalid.select2-selection {
-            border-color: #dc3545 !important; /* Bootstrap's invalid border color */
+            border-color: #dc3545 !important;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='m5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e") !important;
+            background-repeat: no-repeat !important;
+            background-position: right calc(0.375em + 0.1875rem) center !important;
+            background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem) !important;
+            padding-right: calc(1.5em + 0.75rem) !important;
         }
     </style>
 
@@ -111,11 +117,50 @@
                 allowClear: true
             });
 
-            // Evento que remove a classe de invalidação do campo select2
-            const event = function (e) {
-                $(this).parent().find(".select2-selection").removeClass("is-invalid");
+            // gerencia o estado do campo select2
+            function manageSelect2Validation() {
+                $('#autor, #assunto').each(function() {
+                    const $select = $(this);
+                    const $select2Selection = $select.next('.select2-container').find('.select2-selection');
+                    
+                    $select2Selection.removeClass('is-invalid');
+                    $select.removeClass('is-invalid');
+                });
             }
-            $('#autor, #assunto').on("select2:select", event);
+            
+            // Função para validar um campo select2 específico
+            function validateSelect2(selectElement) {
+                const $select = $(selectElement);
+                const $select2Selection = $select.next('.select2-container').find('.select2-selection');
+                const values = $select.val();
+                
+                if (values && values.length > 0) {
+                    $select2Selection.removeClass('is-invalid');
+                    $select.removeClass('is-invalid');
+                    $select[0].setCustomValidity(''); // Limpa mensagem de validação HTML5
+                } else {
+                    if ($select.data('was-validated')) {
+                        $select2Selection.addClass('is-invalid');
+                        $select.addClass('is-invalid');
+                        $select[0].setCustomValidity('Este campo é obrigatório. Por favor, preencha.');
+                    }
+                }
+            }
+
+            // Define o estado inicial dos campos select2
+            manageSelect2Validation();
+
+
+            $('#autor, #assunto').on('select2:select select2:unselect select2:clear', function(e) {
+                validateSelect2(this);
+            });
+
+            $('form').on('submit', function(e) {
+                $('#autor, #assunto').each(function() {
+                    $(this).data('was-validated', true);
+                    validateSelect2(this);
+                });
+            });
         });
     </script>
 @endsection

@@ -13,7 +13,9 @@
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
                 <tr>
-                    <th>Autor</th>
+                    <th colspan="5">Autor</th>
+                </tr>
+                <tr>
                     <th>Título do Livro</th>
                     <th>Editora</th>
                     <th>Edição</th>
@@ -24,13 +26,12 @@
             <tbody>
                 @foreach($dadosRelatorio as $autorNome => $livros)
                     <tr>
-                        <td colspan="6">
+                        <td colspan="5">
                             {{ $autorNome }}
                         </td>
                     </tr>
                     @foreach ($livros as $livro)
                         <tr>
-                            <td></td>
                             <td>{{$livro['titulo']}}</td>
                             <td>{{$livro['editora']}}</td>
                             <td>{{$livro['edicao']}}</td>

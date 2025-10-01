@@ -53,6 +53,7 @@ class LivroDTO extends DTO
             'edicao.min' => 'A edição deve ser maior que 0.',
 
             'anopublicacao.required' => 'O ano de publicação é obrigatório.',
+            'anopublicacao.numeric' => 'O ano de publicação deve ser um ano válido (ex: ' . Carbon::now()->year . ').',
             'anopublicacao.min' => 'O ano de publicação deve ser um valor válido maior que zero.',
             'anopublicacao.max' => 'O ano de publicação não pode ser superior a ' . Carbon::now()->year . '.',
 
