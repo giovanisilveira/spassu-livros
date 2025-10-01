@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\DTO\LivroDTO;
 use App\DTO\LivroOutputDTO;
+use App\DTO\RelatorioOutputDTO;
 use App\Models\Livro;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -163,9 +164,10 @@ class LivrosService
     public function relatorio()
     {
         $livrosPorAutor = DB::table('autores_livros')
-        ->orderBy('autor_nome', 'asc')
-        ->get();
+        ->get()->toArray();
 
-        return $livrosPorAutor->groupBy('autor_nome');
+        $result = new RelatorioOutputDTO($livrosPorAutor);
+
+        return $result->toArray();
     }
 }

@@ -64,17 +64,18 @@
         <tbody>
             @foreach($dadosRelatorio as $autorNome => $livros)
                 <tr class="no-border">
-                    <td colspan="6" class="author-name">{{ $autorNome }}</td>
+                    <td colspan="6" class="author-name">
+                        {{ $autorNome }}
+                    </td>
                 </tr>
-
-                @foreach($livros as $livro)
+                @foreach ($livros as $livro)
                     <tr>
                         <td></td>
-                        <td>{{ $livro->livro_titulo }}</td>
-                        <td>{{ $livro->livro_editora }}</td>
-                        <td>{{ $livro->livro_edicao }}</td>
-                        <td>{{ $livro->livro_anopublicacao }}</td>
-                        <td style="text-align: right;">{{ number_format($livro->livro_valor / 100, 2, ',', '.') }}</td>
+                        <td>{{$livro['titulo']}}</td>
+                        <td>{{$livro['editora']}}</td>
+                        <td>{{$livro['edicao']}}</td>
+                        <td>{{$livro['ano_publicacao']}}</td>
+                        <td style="text-align: right;">{{$livro['valor']}}</td>
                     </tr>
                 @endforeach
             @endforeach

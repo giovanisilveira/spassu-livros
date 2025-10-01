@@ -23,45 +23,23 @@
             </thead>
             <tbody>
                 @foreach($dadosRelatorio as $autorNome => $livros)
-                    @foreach($livros as $livro)
+                    <tr>
+                        <td colspan="6">
+                            {{ $autorNome }}
+                        </td>
+                    </tr>
+                    @foreach ($livros as $livro)
                         <tr>
-                            <!-- Exibindo o nome do autor apenas na primeira linha de cada autor -->
-                            @if ($loop->first)
-                                <td rowspan="{{ count($livros) }}" class="align-middle">{{ $autorNome }}</td>
-                            @endif
-                            <td>{{ $livro->livro_titulo }}</td>
-                            <td>{{ $livro->livro_editora }}</td>
-                            <td>{{ $livro->livro_edicao }}</td>
-                            <td>{{ $livro->livro_anopublicacao }}</td>
-                            <td class="text-end">R$ {{ number_format($livro->livro_valor / 100, 2, ',', '.') }}</td>
+                            <td></td>
+                            <td>{{$livro['titulo']}}</td>
+                            <td>{{$livro['editora']}}</td>
+                            <td>{{$livro['edicao']}}</td>
+                            <td>{{$livro['ano_publicacao']}}</td>
+                            <td style="text-align: right;">{{$livro['valor']}}</td>
                         </tr>
                     @endforeach
                 @endforeach
             </tbody>
         </table>
     </div>
-
-    {{--
-    <div class="container mt-5">
-        <h1 class="mb-4">Livros por Autor</h1>
-
-        @foreach($dadosRelatorio as $autorNome => $livros)
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="card-title">{{ $autorNome }}</h5>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group">
-                        @foreach($livros as $livro)
-                            <li class="list-group-item">
-                                <strong>{{ $livro->livro_titulo }}</strong><br>
-                                <small><i>{{ $livro->livro_editora }} | {{ $livro->livro_anopublicacao }} | R$ {{ number_format($livro->livro_valor / 100, 2, ',', '.') }}</i></small>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        @endforeach
-    </div>
-    --}}
 @endsection

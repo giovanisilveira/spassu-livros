@@ -26,7 +26,7 @@
 
             <div class="mb-3">
                 <label for="descricao" class="form-label">Descrição do Assunto</label>
-                <input type="text" class="form-control" id="descricao" name="descricao" value="{{session('errorData')['descricao'] ?? $assunto['descricao'] ?? ''}}" required/>
+                <input type="text" class="form-control" id="descricao" name="descricao"  maxlength="20" value="{{session('errorData')['descricao'] ?? $assunto['descricao'] ?? ''}}" required/>
             </div>
 
             <button type="submit" class="btn btn-primary">Salvar</button>

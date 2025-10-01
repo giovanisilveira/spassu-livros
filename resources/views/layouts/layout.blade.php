@@ -42,5 +42,21 @@
 
     <!-- Scripts do Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script genérico para validação dos campos required -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const camposObrigatorios = document.querySelectorAll('input[required], textarea[required], select[required]');
+            camposObrigatorios.forEach(campo => {
+                campo.addEventListener('invalid', function(event) {
+                    this.setCustomValidity('Este campo é obrigatório. Por favor, preencha.');
+                });
+
+                campo.addEventListener('input', function(event) {
+                    this.setCustomValidity('');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

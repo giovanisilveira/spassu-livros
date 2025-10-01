@@ -26,7 +26,7 @@
 
             <div class="mb-3">
                 <label for="descricao" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" value="{{session('errorData')['nome'] ?? $autor['nome'] ?? ''}}" required/>
+                <input type="text" class="form-control" id="nome" name="nome"  maxlength="40" value="{{session('errorData')['nome'] ?? $autor['nome'] ?? ''}}" required/>
             </div>
 
             <button type="submit" class="btn btn-primary">Salvar</button>

@@ -17,20 +17,26 @@ return new class extends Migration
         DB::statement('
             CREATE VIEW autores_livros AS
             SELECT
-                autor.codau AS autor_id,
                 autor.nome AS autor_nome,
-                livro.codl AS livro_id,
-                livro.titulo AS livro_titulo,
-                livro.editora AS livro_editora,
-                livro.edicao AS livro_edicao,
-                livro.anopublicacao AS livro_anopublicacao,
-                livro.valor AS livro_valor
+                GROUP_CONCAT(
+                CONCAT(
+					livro.codl, \',\',
+					livro.titulo, \',\',
+					livro.editora, \',\',
+					livro.edicao, \',\',
+					livro.anopublicacao, \',\',
+					livro.valor
+				)
+                SEPARATOR \' | \'
+                ) as livros
             FROM
                 autor
             JOIN
                 livro_autor ON autor.codau = livro_autor.autor_codau
             JOIN
-                livro ON livro_autor.livro_codl = livro.codl;
+                livro ON livro_autor.livro_codl = livro.codl
+            GROUP BY
+                autor.nome;
         ');
     }
 
