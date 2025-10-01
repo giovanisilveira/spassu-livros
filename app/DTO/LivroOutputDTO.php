@@ -21,9 +21,9 @@ class LivroOutputDTO extends DTO
         int $codigo,
         string $titulo,
         string $editora,
-        int $edicao,
-        int $anopublicacao,
-        int $valor,
+        ?int $edicao,
+        ?int $anopublicacao,
+        ?int $valor,
         array $autores,
         array $assuntos
     ) {
@@ -44,9 +44,9 @@ class LivroOutputDTO extends DTO
             $livro->codl ?? 0,
             $livro->titulo ?? '',
             $livro->editora ?? '',
-            $livro->edicao ?? 0,
-            $livro->anopublicacao ?? 0,
-            $livro->valor ?? 0,
+            $livro->edicao ?? null,
+            $livro->anopublicacao ?? null,
+            $livro->valor ?? null,
             isset($livro->autores) ? $livro->autores->toArray() : [],
             isset($livro->assuntos) ? $livro->assuntos->toArray() : []
         ))->toArray();

@@ -43,18 +43,30 @@
     <!-- Scripts do Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Script genérico para validação dos campos required -->
+    <!-- Script genérico para validação dos campos required dos formulários-->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const camposObrigatorios = document.querySelectorAll('input[required], textarea[required], select[required]');
             camposObrigatorios.forEach(campo => {
                 campo.addEventListener('invalid', function(event) {
                     this.setCustomValidity('Este campo é obrigatório. Por favor, preencha.');
+                    this.classList.add('is-invalid');
+
+                    if (campo.tagName.toUpperCase() === 'SELECT') {
+                        campo.nextElementSibling.querySelector('.select2-selection').classList.add('is-invalid')
+                    }
                 });
 
-                campo.addEventListener('input', function(event) {
-                    this.setCustomValidity('');
-                });
+                if (campo.tagName.toUpperCase() === 'SELECT') {
+                    campo.addEventListener('change', function(event) {
+                        campo.nextElementSibling.querySelector('.select2-selection').classList.remove('is-invalid')
+                    });
+                } else {
+                    campo.addEventListener('input', function(event) {
+                        this.setCustomValidity('');
+                        this.classList.remove('is-invalid');
+                    });
+                }
             });
         });
     </script>

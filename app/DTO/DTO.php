@@ -24,8 +24,11 @@ abstract class DTO
         return (int) ($valor * 100);
     }
 
-    protected function formatarValor(int $valor) : string
+    protected function formatarValor(?int $valor) : string
     {
+        if (empty($valor)) {
+            return '';
+        }
         return number_format($valor/100, 2, ',', '.');
     }
 

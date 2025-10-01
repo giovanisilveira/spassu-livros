@@ -5,6 +5,11 @@
 @section('content')
     <!-- Incluindo CSS do Select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        .is-invalid.select2-selection {
+            border-color: #dc3545 !important; /* Bootstrap's invalid border color */
+        }
+    </style>
 
     @if(session('error'))
         <div class="alert alert-danger" role="alert">
@@ -56,7 +61,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="autor" class="form-label">Autores</label>
-                <select class="form-control" id="autor" name="autor[]" multiple="multiple">
+                <select class="form-control" id="autor" name="autor[]" multiple="multiple" required>
                     @foreach($autores as $autor)
                             <option value="{{ $autor['codigo'] }}" {{ in_array($autor['codigo'], session('errorData')['autor'] ?? array_column($livro['autores'],'codau') ?? []) ? 'selected' : '' }}>
                             {{ $autor['nome'] }}
@@ -66,7 +71,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="assunto" class="form-label">Assunto</label>
-                <select class="form-control" id="assunto" name="assunto[]" multiple="multiple">
+                <select class="form-control" id="assunto" name="assunto[]" multiple="multiple" required>
                     @foreach($assuntos as $assunto)
                             <option value="{{ $assunto['codigo'] }}" {{ in_array($assunto['codigo'], session('errorData')['assunto'] ?? array_column($livro['assuntos'],'codas') ?? []) ? 'selected' : '' }}>
                             {{ $assunto['descricao'] }}
@@ -105,6 +110,12 @@
                 placeholder: "Selecione os assuntos",
                 allowClear: true
             });
+
+            // Evento que remove a classe de invalidação do campo select2
+            const event = function (e) {
+                $(this).parent().find(".select2-selection").removeClass("is-invalid");
+            }
+            $('#autor, #assunto').on("select2:select", event);
         });
     </script>
 @endsection
