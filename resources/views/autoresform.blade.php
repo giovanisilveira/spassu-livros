@@ -16,25 +16,47 @@
         </div>
         <div>
             <a href="/autores" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Voltar
+                <i class="fas fa-arrow-left "></i> Voltar
             </a>
         </div>
     </div>
 
-    <div class="container mt-5">
-        <form action="/autores" method="POST">
-            @csrf <!-- Proteção contra CSRF -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="card-title mb-0"> Informações do Assunto </h5>
+        </div>
+        <div class="card-body">
+            <form action="/autores" method="POST" class="row g-3">
+                @csrf <!-- Proteção contra CSRF -->
 
-            <input type="hidden" name="codigo" value="{{session('errorData')['codigo'] ?? $autor['codigo'] ?? ''}}">
+                <input type="hidden" name="codigo" value="{{session('errorData')['codigo'] ?? $autor['codigo'] ?? ''}}">
 
-            <div class="mb-3">
-                <label for="descricao" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome"  maxlength="40" value="{{session('errorData')['nome'] ?? $autor['nome'] ?? ''}}" placeholder="Informe o nome do autor" required/>
-            </div>
-
-            <div class="text-end mt-4">
-                <button type="submit" class="btn btn-success"> <i class="fas fa-floppy-disk"></i> Salvar </button>
-            </div>
-        </form>
+                <div class="col-md-8">
+                    <label for="nome" class="form-label">Nome do Autor</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="fas fa-user-pen"></i>
+                        </span>
+                        <input type="text" 
+                                id="nome"
+                                name="nome" 
+                                class="form-control" 
+                                placeholder="Informe o nome do autor" 
+                                maxlength="40" 
+                                value="{{session('errorData')['nome'] ?? $autor['nome'] ?? ''}}"
+                                autocomplete="off"
+                                required>
+                    </div>
+                </div>
+                <div class="col-12 mt-4">
+                    <div class="d-flex justify-content-end gap-2">
+                        <label class="form-label">&nbsp;</label>
+                        <div class="d-grid gap-2 d-md-flex">
+                            <button type="submit" class="btn btn-success"> <i class="fas fa-floppy-disk"></i> Salvar </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 @endsection

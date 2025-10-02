@@ -55,12 +55,10 @@ class RelatorioOutputDTO extends DTO
         
         $assuntos = explode(';', $assuntosString);
         
-        // Se há apenas um assunto
         if (count($assuntos) === 1) {
             return $assuntos[0];
         }
         
-        // Se há múltiplos assuntos, junta com vírgulas e "e" no final
         if (count($assuntos) === 2) {
             return implode(' e ', $assuntos);
         }

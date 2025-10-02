@@ -16,25 +16,48 @@
         </div>
         <div>
             <a href="/assuntos" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Novo Assunto
+                <i class="fas fa-arrow-left "></i> Voltar
             </a>
         </div>
     </div>
 
-    <div class="container mt-5">
-        <form action="/assuntos" method="POST">
-            @csrf <!-- Proteção contra CSRF -->
 
-            <input type="hidden" name="codigo" value="{{session('errorData')['codigo'] ?? $assunto['codigo'] ?? ''}}">
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="card-title mb-0"> Informações do Assunto </h5>
+        </div>
+        <div class="card-body">
+            <form action="/assuntos" method="POST" class="row g-3">
+                @csrf <!-- Proteção contra CSRF -->
 
-            <div class="mb-3">
-                <label for="descricao" class="form-label">Descrição do Assunto</label>
-                <input type="text" class="form-control" id="descricao" name="descricao"  maxlength="20" value="{{session('errorData')['descricao'] ?? $assunto['descricao'] ?? ''}}" placeholder="Informe um assunto para o livro" required/>
-            </div>
+                <input type="hidden" name="codigo" value="{{session('errorData')['codigo'] ?? $assunto['codigo'] ?? ''}}">
 
-            <div class="text-end mt-4">
-                <button type="submit" class="btn btn-success"> <i class="fas fa-floppy-disk"></i> Salvar </button>
-            </div>
-        </form>
+                <div class="col-md-8">
+                    <label for="descricao" class="form-label">Descrição do Assunto</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="fas fa-tag"></i>
+                        </span>
+                        <input type="text" 
+                                id="descricao"
+                                name="descricao" 
+                                class="form-control" 
+                                placeholder="Informe um assunto para o livro" 
+                                maxlength="20" 
+                                value="{{session('errorData')['descricao'] ?? $assunto['descricao'] ?? ''}}"
+                                autocomplete="off"
+                                required>
+                    </div>
+                </div>
+                <div class="col-12 mt-4">
+                    <div class="d-flex justify-content-end gap-2">
+                        <label class="form-label">&nbsp;</label>
+                        <div class="d-grid gap-2 d-md-flex">
+                            <button type="submit" class="btn btn-success"> <i class="fas fa-floppy-disk"></i> Salvar </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 @endsection
