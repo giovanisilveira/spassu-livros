@@ -23,6 +23,7 @@
         </div>
     @endif
 
+    {{--
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="btn btn-primary btn-md" href="/livros" role="button">Voltar</a>
@@ -32,6 +33,20 @@
     <hr class="my-4">
     <div class="container mt-5">
     <h2>Cadastrar Livro</h2>
+    --}}
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h2 mb-0">📚 Cadastrar Livro</h1>
+            <p class="text-muted mb-0">Gerencie o catálogo de livros</p>
+        </div>
+        <div>
+            <a href="/livros" class="btn btn-primary">
+                <i class="fas fa-arrow-left "></i> Voltar
+            </a>
+        </div>
+    </div>
+
     <form action="/livros" method="POST">
         @csrf <input type="hidden" name="codigo" value="{{session('errorData')['codigo'] ?? $livro['codigo'] ?? ''}}">
 
@@ -88,7 +103,7 @@
         </div>
 
         <div class="text-end mt-4">
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-success"> <i class="fas fa-floppy-disk"></i> Salvar </button>
         </div>
 
     </form>
