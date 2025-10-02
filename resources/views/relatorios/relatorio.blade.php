@@ -10,10 +10,10 @@
         <h1 class="mb-4 text-center">Relatório de Livros por Autor</h1>
 
         <!-- Tabela -->
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
-                    <th colspan="5">Autor</th>
+                    <th colspan="5" style="font-weight: bold;">Autor</th>
                 </tr>
                 <tr>
                     <th>Título do Livro</th>
@@ -26,7 +26,7 @@
             <tbody>
                 @foreach($dadosRelatorio as $autorNome => $livros)
                     <tr>
-                        <td colspan="5">
+                        <td colspan="5" style="font-weight: bold; background-color: #f5f5f5;">
                             {{ $autorNome }}
                         </td>
                     </tr>

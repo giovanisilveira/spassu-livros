@@ -36,7 +36,7 @@ class AssuntoDTO extends DTO
         }
 
         $this->codigo = $data['codigo'] ?? null;
-        $this->descricao = $data['descricao'];
+        $this->descricao = trim($data['descricao']);
 
         return $this;
     }

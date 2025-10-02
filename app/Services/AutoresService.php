@@ -60,7 +60,7 @@ class AutoresService
     /**
      * Método responsável por recuperar os dados dos autores
      */
-    public function list(string $search, int $page = 1, int $qtdItens = 50)
+    public function list(string $search, int $page = 1, int $qtdItens = 15)
     {
         $autoresQuery = $this->autorModel->query();
         $autoresQuery->orderBy('nome', 'asc');

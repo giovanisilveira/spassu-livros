@@ -57,7 +57,7 @@ class AssuntosService
     /**
      * Método responsável por recuperar os dados dos assuntos
      */
-    public function list(string $search, int $page = 1, int $qtdItens = 50)
+    public function list(string $search, int $page = 1, int $qtdItens = 15)
     {
         $assuntosQuery = $this->assuntoModel->query();
         $assuntosQuery->orderBy('descricao', 'asc');

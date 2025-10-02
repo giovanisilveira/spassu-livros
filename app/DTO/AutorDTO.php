@@ -36,7 +36,7 @@ class AutorDTO extends DTO
         }
 
         $this->codigo = $data['codigo'] ?? null;
-        $this->nome = $data['nome'];
+        $this->nome = trim($data['nome']);
 
         return $this;
     }

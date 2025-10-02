@@ -49,7 +49,12 @@
             const camposObrigatorios = document.querySelectorAll('input[required], textarea[required], select[required]');
             camposObrigatorios.forEach(campo => {
                 campo.addEventListener('invalid', function(event) {
-                    this.setCustomValidity('Este campo é obrigatório. Por favor, preencha.');
+                    if (campo.type == 'number') {
+                        this.setCustomValidity('Por favor, digite um número válido para este campo.');
+                    } else {
+                        this.setCustomValidity('Este campo é obrigatório. Por favor, preencha com um valor válido.');
+                    }
+
                     this.classList.add('is-invalid');
 
                     if (campo.tagName.toUpperCase() === 'SELECT') {

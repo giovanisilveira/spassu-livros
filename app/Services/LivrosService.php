@@ -73,7 +73,7 @@ class LivrosService
     /**
      * Método responsável por retornar os dados de livros
      */
-    public function list(string $search, int $page = 1, int $qtdItens = 50)
+    public function list(string $search, int $page = 1, int $qtdItens = 15)
     {
         $livrosQuery = $this->livroModel->query();
         $livrosQuery->orderBy('titulo', 'asc');
@@ -82,7 +82,7 @@ class LivrosService
             $livrosQuery->where('titulo', 'like', "%$search%");
         }
 
-        $livros = $livrosQuery->with(['assuntos'])->paginate(
+        $livros = $livrosQuery->with(['assuntos', 'autores'])->paginate(
             $qtdItens,
             ['*'],
             'page',

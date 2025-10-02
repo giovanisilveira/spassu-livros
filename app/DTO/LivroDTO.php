@@ -75,8 +75,8 @@ class LivroDTO extends DTO
         }
 
         $this->codigo = $data['codigo'] ?? null;
-        $this->titulo = $data['titulo'];
-        $this->editora = $data['editora'];
+        $this->titulo = trim($data['titulo']);
+        $this->editora = trim($data['editora']);
         $this->edicao = $data['edicao'];
         $this->anopublicacao = $data['anopublicacao'];
         $this->valor = $data['valor'];

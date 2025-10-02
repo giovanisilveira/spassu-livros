@@ -38,29 +38,29 @@
         <div class="row">
             <div class="col-md-8 mb-3">
                 <label for="titulo" class="form-label">Título</label>
-                <input type="text" class="form-control" id="titulo" name="titulo" maxlength="40" value="{{session('errorData')['titulo'] ?? $livro['titulo'] ?? ''}}" required />
+                <input type="text" class="form-control" id="titulo" name="titulo" maxlength="40" value="{{session('errorData')['titulo'] ?? $livro['titulo'] ?? ''}}" placeholder="Informe o título do livro" required />
             </div>
 
             <div class="col-md-4 mb-3">
                 <label for="editora" class="form-label">Editora</label>
-                <input type="text" class="form-control" id="editora" name="editora" maxlength="40" value="{{session('errorData')['editora'] ?? $livro['editora'] ?? ''}}" required />
+                <input type="text" class="form-control" id="editora" name="editora" maxlength="40" value="{{session('errorData')['editora'] ?? $livro['editora'] ?? ''}}" placeholder="Informe o nome da editora" required />
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label for="edicao" class="form-label">Edição</label>
-                <input type="number" class="form-control" id="edicao" name="edicao" value="{{session('errorData')['edicao'] ?? $livro['edicao'] ?? ''}}" required />
+                <input type="number" class="form-control" id="edicao" name="edicao" value="{{session('errorData')['edicao'] ?? $livro['edicao'] ?? ''}}" placeholder="Informe o número de edição do livro" required />
             </div>
 
             <div class="col-md-4 mb-3">
                 <label for="anopublicacao" class="form-label">Ano de Publicação <small>(YYYY)</small></label>
-                <input type="number" class="form-control" id="anopublicacao" name="anopublicacao" value="{{session('errorData')['anopublicacao'] ?? $livro['anopublicacao'] ?? ''}}" required />
+                <input type="number" class="form-control" id="anopublicacao" name="anopublicacao" value="{{session('errorData')['anopublicacao'] ?? $livro['anopublicacao'] ?? ''}}" placeholder="Informe o ano de publicação do livro" required />
             </div>
 
             <div class="col-md-4 mb-3">
                 <label for="valor" class="form-label">Valor</label>
-                <input type="text" class="form-control" id="valor" name="valor" value="{{session('errorData')['valor'] ?? $livro['valor'] ?? ''}}" required />
+                <input type="text" class="form-control" id="valor" name="valor" value="{{session('errorData')['valor'] ?? $livro['valor'] ?? ''}}" placeholder="Informe o valor do livro" required />
             </div>
         </div>
 
