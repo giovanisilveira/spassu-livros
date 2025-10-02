@@ -25,7 +25,13 @@ return new class extends Migration
 					livro.editora, \',\',
 					livro.edicao, \',\',
 					livro.anopublicacao, \',\',
-					livro.valor
+					livro.valor, \',\',
+					COALESCE((
+                        SELECT GROUP_CONCAT(assunto.descricao SEPARATOR \';\')
+                        FROM livro_assunto
+                        JOIN assunto ON livro_assunto.assunto_codas = assunto.codas
+                        WHERE livro_assunto.livro_codl = livro.codl
+                    ), \'Sem assunto\')
 				)
                 SEPARATOR \' | \'
                 ) as livros

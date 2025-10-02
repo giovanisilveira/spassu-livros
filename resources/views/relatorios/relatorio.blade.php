@@ -13,20 +13,21 @@
         <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
-                    <th colspan="5" style="font-weight: bold;">Autor</th>
+                    <th colspan="6" style="font-weight: bold;">Autor</th>
                 </tr>
                 <tr>
                     <th>Título do Livro</th>
                     <th>Editora</th>
                     <th>Edição</th>
                     <th>Ano de Publicação</th>
+                    <th>Assunto</th>
                     <th class="text-end">Preço</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($dadosRelatorio as $autorNome => $livros)
                     <tr>
-                        <td colspan="5" style="font-weight: bold; background-color: #f5f5f5;">
+                        <td colspan="6" style="font-weight: bold; background-color: #f5f5f5;">
                             {{ $autorNome }}
                         </td>
                     </tr>
@@ -36,6 +37,7 @@
                             <td>{{$livro['editora']}}</td>
                             <td>{{$livro['edicao']}}</td>
                             <td>{{$livro['ano_publicacao']}}</td>
+                            <td>{{$livro['assuntos_texto']}}</td>
                             <td style="text-align: right;">{{$livro['valor']}}</td>
                         </tr>
                     @endforeach

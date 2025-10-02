@@ -20,6 +20,8 @@ class RelatorioOutputDTO extends DTO
                     'edicao' => $dadosLivros[3],
                     'ano_publicacao' => $dadosLivros[4],
                     'valor' => $this->formatarValor($dadosLivros[5]),
+                    'assuntos' => $this->formatarAssuntos($dadosLivros[6] ?? 'Sem assunto'),
+                    'assuntos_texto' => $this->formatarAssuntosTexto($dadosLivros[6] ?? 'Sem assunto')
                 ];
             }
             $this->result[$livros->autor_nome] = $livrosFormatados;
@@ -28,5 +30,42 @@ class RelatorioOutputDTO extends DTO
 
     public function toArray() : array {
         return $this->result;
+    }
+
+    /**
+     * Formata os assuntos como array
+    */
+    private function formatarAssuntos($assuntosString): array
+    {
+        if (empty($assuntosString) || $assuntosString === 'Sem assunto') {
+            return ['Sem assunto'];
+        }
+        
+        return explode(';', $assuntosString);
+    }
+
+    /**
+     * Formata os assuntos como texto legível
+     */
+    private function formatarAssuntosTexto($assuntosString): string
+    {
+        if (empty($assuntosString) || $assuntosString === 'Sem assunto') {
+            return 'Sem assunto';
+        }
+        
+        $assuntos = explode(';', $assuntosString);
+        
+        // Se há apenas um assunto
+        if (count($assuntos) === 1) {
+            return $assuntos[0];
+        }
+        
+        // Se há múltiplos assuntos, junta com vírgulas e "e" no final
+        if (count($assuntos) === 2) {
+            return implode(' e ', $assuntos);
+        }
+        
+        $ultimoAssunto = array_pop($assuntos);
+        return implode(', ', $assuntos) . ' e ' . $ultimoAssunto;
     }
 }
