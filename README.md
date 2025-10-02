@@ -1,4 +1,4 @@
-## About
+## Sobre
 Projeto livros
 
 ## Instruções de ambiente
